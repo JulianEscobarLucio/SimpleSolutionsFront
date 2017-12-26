@@ -1,0 +1,52 @@
+.body{
+    width: 50%;
+    margin-left: 22%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-style: inset;
+    padding: 5%;
+    -webkit-box-shadow: -8px 10px 5px 0px rgba(214,210,214,1);
+    -moz-box-shadow: -8px 10px 5px 0px rgba(214,210,214,1);
+     box-shadow: -8px 10px 5px 0px rgba(214,210,214,1);
+}
+
+.inputMetricas{
+    width: 50%;
+}
+
+.control-label{
+    text-align: end;
+}
+.btn{
+    width: 127px;
+}
+
+.mensajeError {
+    color:red;
+}
+
+.lista-pruebas-div{
+    padding: 19%;
+    padding-top: 3%;
+}
+
+
+.lista-pruebas-div h1{
+    padding: 34%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.btnhabilitado{
+    display: block;
+}
+
+.btnInhabilitado{
+    display: none;
+}
+.succes{
+    color:green;
+}
+.error{
+    color:red;
+}

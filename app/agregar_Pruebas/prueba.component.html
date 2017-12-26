@@ -1,0 +1,140 @@
+<div  ng-controller="ComponentController as vm ">
+  <div class="body">
+    <h1>Agregar prueba</h1>
+    <br>
+    <br>
+    <div class="row">
+      <div class="form-group col-xs-6 col-sm-6">
+        <label for="usr">Aplicación*</label>
+        <select class="form-control" ng-model="vm.aplicacion" ng-change="vm.listarVersiones()">
+          <option value="0" ng-selected="true">Seleccione una aplicación...</option>
+          <option ng-repeat="aplicacion in vm.listaAplicacion" value="{{aplicacion.id}}">{{aplicacion.nombre}}</option>
+        </select>
+        <p class="mensajeError" ng-bind="vm.mensajeAplicacion"></p>
+      </div>
+      <div class="form-group col-xs-6 col-sm-6">
+        <label for="usr">Versión*</label>
+        <select class="form-control" ng-model="vm.pruevaVersion" ng-change="vm.functionVersion()">
+          <option value="0" ng-selected="true">Seleccione una versión...</option>
+          <option ng-repeat="version in vm.listaVersion" value="{{version.idVersion}}">{{version.nombre}}</option>
+        </select>
+        <p class="mensajeError" ng-bind="vm.mensajeVersion"></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-6 col-sm-6">
+        <label for="usr">Nombre del ciclo*</label>
+        <input type="text" class="form-control" ng-model="vm.nombre" maxlength="30" ng-keyup="vm.functionNombre()">
+        <p class="mensajeError" ng-bind="vm.mensajeNombre"></p>
+      </div>
+    </div>
+
+    <h2>Metricas</h2>
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="metrica1">Cantidad de pruebas a ejecutar*:</label>
+        <div class="col-sm-5">
+          <input type="number" ng-model="vm.metrica1" class="form-control inputMetricas" id="metrica1"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" ng-change="vm.functionMetrica1()">
+          <p class="mensajeError" ng-bind="vm.mensajeMetrica1"></p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="metrica2">Cantidad de pruebas  ejecutadas*:</label>
+        <div class="col-sm-5">
+          <input type="number" ng-model="vm.metrica2" class="form-control inputMetricas" id="metrica2" 
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" ng-change="vm.functionMetrica2()">
+          <p class="mensajeError" ng-bind="vm.mensajeMetrica2"></p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="metrica3">Cantidad de pruebas fallidas*:</label>
+        <div class="col-sm-5">
+          <input type="number" ng-model="vm.metrica3" class="form-control inputMetricas" id="metrica3"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" ng-change="vm.functionMetrica3()">
+          <p class="mensajeError" ng-bind="vm.mensajeMetrica3"></p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="metrica4">Cantidad de pruebas completadas*:</label>
+        <div class="col-sm-5">
+          <input type="number" ng-model="vm.metrica4" class="form-control inputMetricas" id="metrica4"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" ng-change="vm.functionMetrica4()">
+          <p class="mensajeError" ng-bind="vm.mensajeMetrica4"></p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="metrica5">Cantidad de errores bloqueantes*:</label>
+        <div class="col-sm-5">
+          <input type="number" ng-model="vm.metrica5" class="form-control inputMetricas" id="metrica5"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" ng-change="vm.functionMetrica5()">
+          <p class="mensajeError" ng-bind="vm.mensajeMetrica5"></p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row botones">
+      <div class="form-group col-xs-3 col-sm-3">
+        <button type="button" class="btn btn-danger" ng-click="vm.cancelar()">Cancelar</button>
+      </div>
+      <div class="form-group col-xs-3 col-sm-3">
+        <button type="button" class="btn btn-success" ng-class="vm.btnHabilitado == true ? 'btnhabilitado' :'btnInhabilitado' " ng-click="vm.agregarPrueba()">Agregar</button>
+      </div>
+      <h1 ng-class="vm.agregado == true ? 'succes' :'error' ">{{vm.mensaje}}</h1>
+    </div>
+  </div>
+
+  <div class="lista-pruebas-div">
+      <h1>Lista de pruebas</h1>
+      <br>
+      <br>
+      <br>
+      <table class="table">
+              <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Prueba</th>
+                        <th scope="col">Aplicación</th>
+                        <th scope="col">Versión</th>
+                        <th scope="col">Nombre ciclo</th>
+                        <th scope="col">Cantidad de pruebas</th>
+                        <th scope="col">Ejecutadas</th>
+                        <th scope="col">Fallidas</th>
+                        <th scope="col">Completadas</th>
+                        <th scope="col">Bloqueantes</th>
+                      </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="prueba in vm.listaPrueba"> 
+                    <th scope="row">1</th>
+                    <td>{{prueba.idPrueba}}</td>
+                    <td>{{prueba.idAplicacion}}</td>
+                    <td>{{prueba.idVersion}}</td>
+                    <td>{{prueba.nombreCiclo}} </td>
+                    <td>{{prueba.cantPruebas}}</td>
+                    <td>{{prueba.cantEjecutadas}}</td>
+                    <td>{{prueba.cantFallidas}}</td>
+                    <td>{{prueba.cantCompletadas}}</td>
+                    <td>{{prueba.cantBloqueantes}}</td>
+                  </tr>                                   
+              </tbody>
+      </table>
+  </div>
+  <div id="overlay"></div>
+  <div id="waitSpinner"></div>
+</div>
